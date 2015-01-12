@@ -1,0 +1,19 @@
+{
+  "name" : "bye",
+  "author" : "John Smith",
+  "version" : "0.2.0",
+  "bundleID" : "com.yourcompany.extension",
+  "bundleVersion" : "1",
+  "storage" : "50",
+
+  "description" : "something",
+  "website" : "http://christianjuth.com",
+
+  "permissions" : {
+    "websites" : true,
+    "secureWebsites" : false
+  },
+
+  "background" : "background.html",
+  "popup" : "popup.html"
+}
