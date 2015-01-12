@@ -42,21 +42,24 @@ module.exports = function(grunt) {
 
     //create safari info.plist
     var permissions = {
-      '#list' : [
-        {
-          'key' : 'Level',
-          'string' : json.permissions.websites? 'All' : 'None'
-        },
-        {
-          'key' : 'Include Secure Pages'
-        }
-      ]
+      'key' : 'Website Access',
+      'dict' : {
+        '#list' : [
+          {
+            'key' : 'Level',
+            'string' : json.permissions.websites? 'All' : 'None'
+          },
+          {
+            'key' : 'Include Secure Pages'
+          }
+        ]
+      }
     }
 
     if (json.permissions.secureWebsites) {
-      permissions['#list'][1]['true'] = '';
+      permissions.dict['#list'][1]['true'] = '';
     } else {
-      permissions['#list'][1]['false'] = '';
+      permissions.dict['#list'][1]['false'] = '';
     }
 
     var popup = {
@@ -143,7 +146,7 @@ module.exports = function(grunt) {
             },
             {
               'key' : 'CFBundleVersion',
-              'string' : json.bundleVersion
+              'string' : json.version
             },
             {
               'key' : 'Chrome',
