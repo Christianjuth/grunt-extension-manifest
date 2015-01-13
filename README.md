@@ -1,4 +1,5 @@
 [![npm version](https://badge.fury.io/js/grunt-extension-manifest.svg)](http://badge.fury.io/js/grunt-extension-manifest)
+[![Build Status](https://travis-ci.org/Christianjuth/grunt-extension-manifest.svg?branch=master)](https://travis-ci.org/Christianjuth/grunt-extension-manifest)
 
 # grunt-extension-manifest
 
