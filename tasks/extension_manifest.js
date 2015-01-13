@@ -20,7 +20,7 @@ module.exports = function(grunt) {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
       file : "config.json",
-      dest : "."
+      dest : "./"
     });
 
     //get settings
@@ -328,7 +328,7 @@ module.exports = function(grunt) {
     grunt.file.write(this.data.dest + 'settings.plist', settings);
 
     // Print a success message.
-    grunt.log.ok('3 were created');
+    grunt.log.ok('3 were created.');
   });
 
 };
