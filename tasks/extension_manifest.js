@@ -33,7 +33,10 @@ module.exports = function(grunt) {
       json.name == null ||
       json.version == null ||
       json.bundleID == null ||
-      json.databaseQuota == null
+      json.databaseQuota == null ||
+      (json.popup != null && json.menuIcon == null) ||
+      (json.menuIcon != null && (json.menuIcon['19'] == null && json.menuIcon['19']))
+
     ){
       grunt.log.error("missing prams");
       return false;
@@ -50,12 +53,7 @@ module.exports = function(grunt) {
       'description' : json.description,
       'homepage_url' : json.website,
 
-      'browser_action' : {
-        'default_icon' : {
-          '19' : 'menu-icons/icon-19.png',
-          '38' : 'icon-38.png'
-        }
-      },
+      'browser_action' : {},
 
       'background' : {
         'page' : json.background
@@ -73,30 +71,48 @@ module.exports = function(grunt) {
 
 
     //create safari menu object
-    var menu = {
-      'dict' : {
-        '#list' : [
-          {
-            'key' : 'Command',
-            'string' : ''
-          },
-          {
-            'key' : 'Popover',
-            'string' : 'popup'
-          },
-          {
-            'key' : 'Identifier',
-            'string' : 'popupID'
-          },
-          {
-            'key' : 'Image',
-            'string' : 'menu-icons/icon-16.png'
-          },
-          {
-            'key' : 'Label',
-            'string' : json.name
-          }
-        ]
+    var menu = {};
+    if( json.menuIcon != null ){
+
+      if( json.menuIcon['19'] == null ){
+        json.menuIcon['19'] = json.menuIcon['16']
+      }
+
+      if( json.menuIcon['16'] == null ){
+        json.menuIcon['16'] = json.menuIcon['19']
+      }
+
+      chrome.browser_action = {
+        'default_icon' : {
+          '19' : json.menuIcon['19'],
+          '38' : 'icon-38.png'
+        }
+      }
+      menu = {
+        'dict' : {
+          '#list' : [
+            {
+              'key' : 'Command',
+              'string' : ''
+            },
+            {
+              'key' : 'Popover',
+              'string' : 'popup'
+            },
+            {
+              'key' : 'Identifier',
+              'string' : 'popupID'
+            },
+            {
+              'key' : 'Image',
+              'string' : json.menuIcon['16']
+            },
+            {
+              'key' : 'Label',
+              'string' : json.name
+            }
+          ]
+        }
       }
     }
 
@@ -169,7 +185,7 @@ module.exports = function(grunt) {
           ]
         }
       }
-    } else {
+    } else if (json.menuIcon != null) {
       menu.dict['#list'][0]['string'] = 'icon-clicked';
       menu.dict['#list'][1]['string'] = '';
       delete popup.dict
