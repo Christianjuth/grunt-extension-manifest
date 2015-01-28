@@ -49,6 +49,57 @@ grunt.initConfig({
 });
 ```
 
+### Configure.json
+```json
+{
+  "name" : "Your Extension",
+  "author" : "John Smith",
+  "version" : "0.2.2",
+  "bundleID" : "com.yourcompany.extension",
+  "databaseQuota" : "10",
+
+
+  "description" : "This is awesome",
+  "website" : "http://your-domain.com",
+
+
+  "permissions" : [
+    "secureWebsites",
+    "websites",
+    "notifications"
+  ],
+
+  "options_page": "options.html",
+  "background" : "background.html",
+  "popup" : "popup.html",
+
+
+  "options" : [
+    {
+      "title" : "Full Name",
+      "type" : "text",
+      "key" : "name",
+      "default": "John Smith"
+    },
+    {
+      "title" : "Mailing List",
+      "type" : "checkbox",
+      "key" : "email",
+      "default": true
+    },
+    {
+      "title" : "What you want",
+      "type" : "list",
+      "key" : "list",
+      "default": "all",
+      "titles" : ["Food"],
+      "values" : ["food"]
+    }
+  ]
+}
+```
+
 ## Release History
+* 2015-01-13 v0.2.0 Stable Release
 * 2015-01-13 v0.1.2 Bug Fixes
 * 2015-01-12 v0.1.0 Release
