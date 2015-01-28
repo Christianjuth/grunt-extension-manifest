@@ -59,8 +59,10 @@
       "type" : "list",
       "key" : "list",
       "default": "all",
-      "titles" : ["Food"],
-      "values" : ["food"]
+      "options" : [
+        {"title": "Hello", "val": "hello"},
+        {"title": "Bye", "val": "bye"}
+      ]
     }
   ]
 }

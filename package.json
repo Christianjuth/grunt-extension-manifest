@@ -1,7 +1,7 @@
 {
   "name": "grunt-extension-manifest",
   "description": "Compile one manifest for chrome and safari extensions.",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "homepage": "https://github.com/christianjuth/grunt-extension-manifest",
   "author": {
     "name": "Christian Juth",

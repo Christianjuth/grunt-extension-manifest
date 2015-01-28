@@ -211,6 +211,18 @@ module.exports = function(grunt) {
         item.type = item.type.replace(/^(text)$/ig,'TextField');
         item.type = item.type.replace(/^(checkbox)$/ig,'CheckBox');
         item.type = item.type.replace(/^(list)$/ig,'ListBox');
+
+        var titles = []
+        var values = []
+
+        if ( item.options != null ) {
+          for(var j=0; j<item.options.length; j++){
+            var option = item.options[j];
+            titles.push({string:option.title})
+            values.push({string:option.val})
+          }
+        }
+
         var jsomItem = {
           dict : {
             '#list' : [
@@ -220,13 +232,13 @@ module.exports = function(grunt) {
               {
                 'key' : 'Titles',
                 'array' : {
-                  '#list' : []
+                  '#list' : titles
                 }
               },
               {
                 'key' : 'Values',
                 'array' : {
-                  '#list' : []
+                  '#list' : values
                 }
               },
               {
@@ -251,17 +263,7 @@ module.exports = function(grunt) {
           jsomItem.dict['#list'][0]['string'] = item.default
         }
 
-        if (item.type === 'ListBox'){
-          for(var j=0; j<item.values.length; j++){
-            jsomItem.dict['#list'][1]['array']['#list'].push({
-              'string' : item.titles[j]
-            });
-
-            jsomItem.dict['#list'][2]['array']['#list'].push({
-              'string' : item.values[j]
-            });
-          }
-        } else {
+        if (item.type !== 'ListBox') {
           delete jsomItem.dict['#list'][2]['array']['#list']
           delete jsomItem.dict['#list'][1]['array']['#list']
         }
