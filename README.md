@@ -3,6 +3,8 @@
 
 # grunt-extension-manifest
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Christianjuth/grunt-extension-manifest.svg)](https://greenkeeper.io/)
+
 > Compile one manifest for chrome and safari extensions.
 
 ## Getting Started
